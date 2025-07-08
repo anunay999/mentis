@@ -1,0 +1,38 @@
+{
+  "publish_request": {
+    "objects": [
+      {
+        "type": "RAW",
+        "content": "VGhpcyBpcyBhIHNhbXBsZSBkb2N1bWVudCBhYm91dCBBSSBhZ2VudHMu",
+        "metadata": {
+          "source_url": "https://example.com/ai-agents",
+          "title": "Introduction to AI Agents"
+        }
+      }
+    ]
+  },
+  "lookup_request": {
+    "options": {
+      "query": "AI agents introduction",
+      "top_k": 5,
+      "min_score": 0.7,
+      "include_content": true
+    }
+  },
+  "workflow_session_request": {
+    "goal": "Research and summarize AI agent capabilities",
+    "context": {
+      "domain": "artificial_intelligence",
+      "priority": "high"
+    }
+  },
+  "workflow_step_request": {
+    "session_id": "550e8400-e29b-41d4-a716-446655440000",
+    "step_type": "scrape",
+    "input": "https://example.com/ai-agents",
+    "metadata": {
+      "timeout": 30,
+      "user_agent": "mentis-scraper"
+    }
+  }
+}
