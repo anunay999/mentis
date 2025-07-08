@@ -85,7 +85,6 @@ Reuse Level: Any step can be reused across different workflows
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Go 1.21+
 - Docker & Docker Compose
 - OpenAI API key (optional, defaults to mock provider)
 
@@ -97,17 +96,14 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-### 2. Start Infrastructure
+### 2. Start Mentis (Full Stack)
 ```bash
-docker-compose up -d postgres qdrant
+docker-compose up -d
 ```
 
-### 3. Run Mentis
-```bash
-go run cmd/server/main.go
-```
+This starts all services: PostgreSQL, Qdrant, and the Mentis application server.
 
-### 4. Test the API
+### 3. Test the API
 ```bash
 # Publish an artifact
 curl -X POST http://localhost:8080/v1/cache/publish \
@@ -259,6 +255,42 @@ curl http://localhost:8080/health
 - **[API Documentation](docs/api.md)**: Complete API reference with examples
 
 ## 🛠️ Development
+
+### Local Development Setup
+
+For active development, you can run the application directly with Go while using Docker for dependencies:
+
+#### Prerequisites
+- Go 1.21+
+- Docker & Docker Compose
+
+#### 1. Start Infrastructure Only
+```bash
+docker-compose up -d postgres qdrant
+```
+
+#### 2. Run Mentis Locally
+```bash
+go run cmd/server/main.go
+```
+
+This approach is useful for:
+- Hot reloading during development
+- Easier debugging with IDE integration
+- Direct access to Go tooling (tests, profiling)
+
+### Production Deployment
+
+For production or testing the full containerized setup:
+
+```bash
+docker-compose up -d
+```
+
+This is the recommended approach for:
+- Production deployments
+- Integration testing
+- Consistent environment across teams
 
 ### Project Structure
 ```

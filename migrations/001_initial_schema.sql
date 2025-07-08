@@ -1,3 +1,6 @@
+-- Enable required extensions
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
 -- Create artifacts table
 CREATE TABLE artifacts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -15,7 +18,7 @@ CREATE INDEX idx_artifacts_content_hash ON artifacts(content_hash);
 CREATE INDEX idx_artifacts_type ON artifacts(type);
 CREATE INDEX idx_artifacts_created_at ON artifacts(created_at);
 CREATE INDEX idx_artifacts_stale ON artifacts(stale);
-CREATE INDEX idx_artifacts_metadata_source_url ON artifacts USING GIN ((metadata->>'source_url'));
+CREATE INDEX idx_artifacts_metadata_source_url ON artifacts USING GIN ((metadata->>'source_url') gin_trgm_ops);
 
 -- Create artifact_dependencies table for DAG relationships
 CREATE TABLE artifact_dependencies (
